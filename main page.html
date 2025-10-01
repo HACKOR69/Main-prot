@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth; /* smooth scroll */
+      }
+
+      /* Animated gradient for text */
+      .gradient-text {
+        background: linear-gradient(270deg, #3b82f6, #06b6d4, #9333ea, #f43f5e);
+        background-size: 800% 800%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: gradientMove 8s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Navbar underline animation */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #facc15;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Scroll animation */
+      .fade-slide {
+        opacity: 0;
+        transform: translateY(80px);
+        transition: all 1s ease;
+      }
+      .fade-slide.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Back to top button */
+      #toTop {
+        display: none;
+      }
+    </style>
+  </head>
+  <body
+    class="relative min-h-screen text-white bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+  >
+    <!-- Navbar -->
+    <header
+      class="bg-white/10 backdrop-blur-md shadow-md fixed w-full top-0 z-50"
+    >
+      <div
+        class="container mx-auto px-4 flex justify-between items-center h-16"
+      >
+        <!-- Logo -->
+        <a href="main page.html" class="flex items-center space-x-2">
+          <img src="/imgs/sbs logo.png" class="h-9" />
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav
+          class="hidden md:flex space-x-8 font-medium text-white"
+          id="nav-links"
+        >
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#sol" class="nav-link">Solutions</a>
+          <a href="#ser" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About Us</a>
+          <a href="#contact" class="nav-link">Contact Us</a>
+        </nav>
+<!-- Mobile Menu Button -->
+<button
+  id="menu-btn"
+  class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg border border-white/20 bg-white/5 backdrop-blur-md space-y-1 transition-all duration-300"
+>
+  <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+  <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+  <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+</button>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="hidden md:hidden opacity-0 -translate-y-5 transition-all duration-500 ease-out bg-gray-900/95 backdrop-blur-lg shadow-lg border-t border-gray-700"
+>
+  <nav class="flex flex-col p-6 space-y-5 font-medium text-white text-lg">
+    <a href="#home" class="hover:text-yellow-300 transition-colors duration-300">Home</a>
+    <a href="#sol" class="hover:text-yellow-300 transition-colors duration-300">Solutions</a>
+    <a href="#ser" class="hover:text-yellow-300 transition-colors duration-300">Services</a>
+    <a href="#about" class="hover:text-yellow-300 transition-colors duration-300">About Us</a>
+    <a href="#contact" class="hover:text-yellow-300 transition-colors duration-300">Contact Us</a>
+  </nav>
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const spans = menuBtn.querySelectorAll("span");
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = !mobileMenu.classList.contains("hidden");
+
+    if (isOpen) {
+      // Hide menu
+      mobileMenu.classList.add("opacity-0", "-translate-y-5");
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 500);
+    } else {
+      // Show menu
+      mobileMenu.classList.remove("hidden");
+      setTimeout(() => {
+        mobileMenu.classList.remove("opacity-0", "-translate-y-5");
+      }, 10);
+    }
+
+    // Animate hamburger to X
+    spans[0].classList.toggle("rotate-45");
+    spans[0].classList.toggle("translate-y-2");
+
+    spans[1].classList.toggle("opacity-0");
+
+    spans[2].classList.toggle("-rotate-45");
+    spans[2].classList.toggle("-translate-y-2");
+  });
+</script>
+    </header>
+
+    <!-- Hero Section -->
+    <main
+      id="home"
+      class="flex items-center justify-center min-h-screen text-center px-3"
+    >
+      <div>
+        <h1
+          class="gradient-text text-5xl md:text-7xl font-extrabold tracking-wide drop-shadow-lg fade-slide"
+        >
+          DIGITALIZED
+        </h1>
+        <h1
+          class="gradient-text text-5xl md:text-7xl font-extrabold tracking-wide drop-shadow-lg fade-slide"
+        >
+          SOLUTIONS
+        </h1>
+        <h3
+          class="mt-4 text-xl md:text-3xl font-light text-gray-300 fade-slide"
+        >
+          Ahead of the Competition
+        </h3>
+      </div>
+    </main>
+
+    <!-- Section: Solutions -->
+    <section
+      id="sol"
+      class="relative flex flex-col items-center justify-center min-h-screen text-center px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
+      <div class="max-w-6xl w-full">
+        <!-- Title -->
+        <h1
+          class="gradient-text text-4xl md:text-6xl font-extrabold fade-slide"
+        >
+          OUR SOLUTIONS
+        </h1>
+        <!-- Subtitle -->
+        <p class="mt-4 text-lg md:text-2xl font-light text-gray-400 fade-slide">
+          Innovative, scalable, and future-ready digital solutions
+        </p>
+
+        <!-- Solutions Grid -->
+        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 mt-16">
+          <!-- Box 1 -->
+          <div
+            class="group relative p-8 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl hover:shadow-2xl hover:scale-105 transform transition duration-500 fade-slide"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-yellow-400/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+            ></div>
+            <h3 class="text-2xl font-semibold mb-3 text-white relative z-10">
+              LED & LCD Displays
+            </h3>
+            <p class="text-gray-300 relative z-10">
+              Premium-quality displays that deliver sharp visuals, indoor or
+              outdoor, tailored for your brand.
+            </p>
+          </div>
+
+          <!-- Box 2 -->
+          <div
+            class="group relative p-8 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl hover:shadow-2xl hover:scale-105 transform transition duration-500 fade-slide"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+            ></div>
+            <h3 class="text-2xl font-semibold mb-3 text-white relative z-10">
+              Content Management
+            </h3>
+            <p class="text-gray-300 relative z-10">
+              Smart CMS platforms that let you control, schedule, and update
+              your content seamlessly.
+            </p>
+          </div>
+
+          <!-- Box 3 -->
+          <div
+            class="group relative p-8 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl hover:shadow-2xl hover:scale-105 transform transition duration-500 fade-slide"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+            ></div>
+            <h3 class="text-2xl font-semibold mb-3 text-white relative z-10">
+              Support & Maintenance
+            </h3>
+            <p class="text-gray-300 relative z-10">
+              Comprehensive technical support and proactive maintenance for
+              worry-free operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animation CSS -->
+    <style>
+      .fade-slide {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .fade-slide.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+
+    <!-- Intersection Observer Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const faders = document.querySelectorAll(".fade-slide");
+
+        const appearOptions = {
+          threshold: 0.2,
+        };
+
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          });
+        }, appearOptions);
+
+        faders.forEach((fader) => {
+          appearOnScroll.observe(fader);
+        });
+      });
+    </script>
+
+    <!-- Section 2 -->
+    <section
+      id="ser"
+      class="flex items-center justify-center min-h-screen text-center px-3 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section Title -->
+        <div class="text-center mb-16 fade-slide">
+          <h2
+            class="gradient-text text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400"
+          >
+            Our Services
+          </h2>
+          <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+            We provide innovative display and signage solutions tailored for
+            your business needs.
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="gara grid md:grid-cols-3 gap-10">
+          <!-- Service 1 -->
+          <div
+            class="p-6 bg-gray-800 rounded-2xl shadow-lg hover:scale-105 transform transition duration-500 hover:shadow-blue-500/30 fade-slide"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-400"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Digital Signage</h3>
+            <p class="text-gray-400">
+              High-quality LED and LCD displays to showcase your brand
+              effectively.
+            </p>
+          </div>
+
+          <!-- Service 2 -->
+          <div
+            class="p-6 bg-gray-800 rounded-2xl shadow-lg hover:scale-105 transform transition duration-500 hover:shadow-blue-500/30 fade-slide"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-400"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 8v4l3 3" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Content Management</h3>
+            <p class="text-gray-400">
+              Easily manage and schedule your content with our smart solutions.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div
+            class="p-6 bg-gray-800 rounded-2xl shadow-lg hover:scale-105 transform transition duration-500 hover:shadow-blue-500/30 fade-slide"
+          >
+            <div
+              class="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-400"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Installation & Support</h3>
+            <p class="text-gray-400">
+              Professional installation with ongoing maintenance and support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 - About Us -->
+    <section
+      id="about"
+      class="flex items-center justify-center min-h-screen text-center px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
+      <div class="max-w-4xl">
+        <!-- Title -->
+        <h1
+          class="gradient-text text-4xl md:text-6xl font-extrabold fade-slide"
+        >
+          ABOUT US
+        </h1>
+
+        <!-- Subtitle -->
+        <h2
+          class="gradient-text text-2xl md:text-4xl font-extrabold fade-slide mt-6"
+        >
+          Synchronized Business Solutions (SBS)
+        </h2>
+
+        <!-- Paragraph -->
+        <p
+          class="mt-6 text-base md:text-lg font-light text-gray-300 leading-relaxed fade-slide"
+        >
+          SBS was founded in the Middle East over 13 years ago and grew into one
+          of the leading digital solution providers within the region, alongside
+          other services such as Enterprise IT security solutions, consultancy
+          and managed services.
+          <br /><br />
+          SBS has a vast portfolio of clients with long standing relations which
+          have been nurtured with the highest standards of after-sales
+          maintenance and support services.
+          <br /><br />
+          SBS is proud to say that diversity, inclusivity and internationalism
+          is what we are all about. Therefore, SBS can ensure the best for our
+          clients from both local to international experience, support, latest
+          technologies and services.
+          <br /><br />
+          Our team is dedicated to providing exceptional services that meet each
+          client’s business needs.
+        </p>
+
+        <!-- Mission / Vision -->
+        <h3
+          class="mt-16 text-xl md:text-3xl font-light text-gray-300 fade-slide"
+        >
+          Learn more about our mission and vision
+        </h3>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <!-- Contact Us Section -->
+    <section
+      id="contact"
+      class="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white"
+    >
+      <div
+        class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12"
+      >
+        <!-- Left: Contact Info -->
+        <div class="space-y-6 fade-slide">
+          <h2 class="text-4xl font-extrabold gradient-text">Contact Us</h2>
+          <p class="text-gray-300">
+            We study, assess, and identify business opportunities within the
+            scope of Digital Solutions. We accordingly provide expertise,
+            recommendations, and services to ensure cutting-edge solutions that
+            elevate your business.
+          </p>
+          <ul class="space-y-4 text-gray-400">
+            <li class="flex items-center gap-3">
+              <svg
+                class="w-6 h-6 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16 4h2a2 2 0 0 1 2 2v12l-6-6H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                />
+              </svg>
+              <span>6th of October City, Giza, Egypt</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                class="w-6 h-6 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 5v14l6-3 6 3 6-14H3z" />
+              </svg>
+              <a href="tel:+20238243114" class="hover:text-blue-400 transition"
+                >+20 238243114</a
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                class="w-6 h-6 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M22 12a10 10 0 1 0-11.63 9.87V15h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1s3 .2 3 .2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.5l-.4 3H16v6.9A10 10 0 0 0 22 12z"
+                />
+              </svg>
+              <a
+                href="mailto:info@sbsmena.com"
+                class="hover:text-blue-400 transition"
+                >info@sbsmena.com</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="fade-slide">
+          <form class="space-y-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+              class="w-full px-4 py-3 rounded-lg bg-gray-800/60 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              required
+              class="w-full px-4 py-3 rounded-lg bg-gray-800/60 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <textarea
+              rows="5"
+              placeholder="Your Message"
+              required
+              class="w-full px-4 py-3 rounded-lg bg-gray-800/60 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+            <button
+              type="submit"
+              class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to top button -->
+    <div
+      class="relative inline-flex items-center justify-center gap-4 group bottom-3 right-6"
+    >
+      <div
+        class="absolute inset-0 duration-1000 opacity-60 transitiona-all bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-400 rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"
+      ></div>
+      <a
+        id="toTop"
+        class="group relative inline-flex items-center justify-center text-base rounded-xl bg-gray-900 px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30"
+        title="TO TOP"
+        href="#home"
+        >UP<svg
+          aria-hidden="true"
+          viewBox="0 0 10 10"
+          height="10"
+          width="9"
+          fill="none"
+          class="mt-0.5 ml-2 -mr-1 stroke-white stroke-2"
+        >
+          <path
+            d="M0 5h7"
+            class="transition opacity-0 group-hover:opacity-100"
+          ></path>
+          <path
+            d="M1 1l4 4-4 4"
+            class="transition group-hover:translate-x-[3px]"
+          ></path>
+        </svg>
+      </a>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+        <!-- Logo & About -->
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-4">SBS MENA</h2>
+          <p class="text-gray-400 text-sm">
+            Smart Business Solutions for Digital Signage & Display Systems.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#home" class="hover:text-blue-400 transition">Home</a>
+            </li>
+            <li>
+              <a href="#services" class="hover:text-blue-400 transition"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a href="#about" class="hover:text-blue-400 transition"
+                >About Us</a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="hover:text-blue-400 transition"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Contact</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M16 2H8a2 2 0 0 0-2 2v16l6-3 6 3V4a2 2 0 0 0-2-2z" />
+              </svg>
+              <span>6th of October City, Giza, Egypt</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                class="w-5 h-5 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 
+            19.79 0 0 1 12 19c-3.87 0-7.46-1.18-10.41-3.21A2 
+            2 0 0 1 0 14V9.08a2 2 0 0 1 1.59-1.97C5.14 
+            6.36 8.48 6 12 6s6.86.36 10.41 1.11A2 2 0 0 1 
+            24 9.08V14a2 2 0 0 1-2 2.92z"
+                />
+              </svg>
+              <a href="tel:+20238243114" class="hover:text-blue-400"
+                >+20 238243114</a
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                class="w-5 h-5 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M16 12A4 4 0 1 1 8 12a4 4 0 0 1 8 0z" />
+                <path
+                  d="M12 2v2m6.36 1.64l-1.42 1.42M20 12h2m-1.64 
+            6.36l-1.42-1.42M12 20v2m-6.36-1.64l1.42-1.42M4 
+            12H2m1.64-6.36l1.42 1.42"
+                />
+              </svg>
+              <a href="mailto:info@sbsmena.com" class="hover:text-blue-400"
+                >info@sbsmena.com</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="p-2 bg-gray-800 rounded-full hover:bg-blue-500 transition"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M22 12a10 10 0 1 0-11.63 9.87V15h-2v-3h2v-2.3c0-2 
+            1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 
+            0-1.3.6-1.3 1.2V12h2.5l-.4 3h-2.1v6.9A10 
+            10 0 0 0 22 12"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="p-2 bg-gray-800 rounded-full hover:bg-blue-500 transition"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 
+            1.53A4.48 4.48 0 0 0 22.4.36a9.1 9.1 
+            0 0 1-2.88 1.1A4.52 4.52 0 0 0 16.1 
+            0c-2.5 0-4.5 2.1-4.5 4.6 0 .36.04.72.12 
+            1.06A12.94 12.94 0 0 1 3.1.6a4.54 4.54 
+            0 0 0-.6 2.3c0 1.6.8 3 2 3.9a4.4 4.4 
+            0 0 1-2-.6v.06c0 2.3 1.6 4.2 3.8 
+            4.7a4.52 4.52 0 0 1-2 .1c.6 2 
+            2.3 3.4 4.4 3.4A9.06 9.06 0 0 
+            1 2 19.54a12.82 12.82 0 0 0 7 
+            2.1c8.4 0 13-7 13-13v-.6A9.5 9.5 
+            0 0 0 23 3"
+                />
+              </svg>
+            </a>
+            <!-- <a
+              href="#"
+              class="p-2 bg-gray-800 rounded-full hover:bg-blue-500 transition"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M21.35 11.1c0-5.1-4.15-9.2-9.25-9.2s-9.25 
+            4.1-9.25 9.2c0 4.6 3.35 8.4 7.75 
+            9.1v-6.4H8.1v-2.7h2.5V9.6c0-2.5 
+            1.5-3.9 3.7-3.9 1.1 0 2.2.2 
+            2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 
+            1.6v1.9h2.8l-.4 2.7h-2.4v6.4c4.4-.7 
+            7.8-4.5 7.8-9.1"
+                />
+              </svg>
+            </a> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="mt-10 text-center text-gray-500 text-sm">
+        © 2025 SBS MENA. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script>
+      // // Mobile menu toggle
+      // const menuBtn = document.getElementById("menu-btn");
+      // const mobileMenu = document.getElementById("mobile-menu");
+      // menuBtn.addEventListener("click", () => {
+      //   mobileMenu.classList.toggle("hidden");
+      // });
+
+      // Scroll animation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      document
+        .querySelectorAll(".fade-slide")
+        .forEach((el) => observer.observe(el));
+
+      // Active nav link
+      const sections = document.querySelectorAll("section, main");
+      const navLinks = document.querySelectorAll("#nav-links .nav-link");
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop -250 ;
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+      
+      // Back to top button
+      const toTop = document.getElementById("toTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          toTop.style.display = "flex";
+        } else {
+          toTop.style.display = "none";
+        }
+      });
+      
+      
+      // Smooth scroll for nav links
+document.querySelectorAll("a.nav-link").forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+    const offset = document.querySelector("header").offsetHeight; // account for fixed navbar
+    window.scrollTo({
+      top: targetSection.offsetTop - offset,
+      behavior: "smooth",
+    });
+  });
+});
+    </script>
+  </body>
+</html>
