@@ -259,7 +259,7 @@ const Portfolio = () => {
                 <div className="p-2 bg-gray-900 rounded-2xl">
                   <img
                     src="/images/WhatsApp Image 2025-09-15 at 11.45.08 AM.jpeg"
-                    alt="Portrait of Alex Johnson, a professional frontend developer with a friendly smile"
+                    alt="Portrait of Yousef Hany, a professional frontend developer with a friendly smile"
                     className="w-full h-auto rounded-2xl"
                   />
                 </div>
